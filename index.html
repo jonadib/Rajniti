@@ -206,7 +206,7 @@
             },
             {
                 question: "সমাজ পরিচালনার মূল ভিত্তি কী হওয়া উচিত?",
-                options: [ "একটি ধর্মনিরপেক্ষ ও সহনশীল সমাজ ব্যবস্থা।", "ইসলামী নৈতিকতা ও মূল্যবোধের ওপর ভিত্তি করে সমাজ পরিচালনা।", "ব্যক্তি சுதந்திரকে সর্বোচ্চ গুরুত্ব দেওয়া।", "ঐতিহ্য ও সংস্কৃতিকে রক্ষা করাই সমাজের মূল লক্ষ্য।" ],
+                options: [ "একটি ধর্মনিরপেক্ষ ও সহনশীল সমাজ ব্যবস্থা।", "ইসলামী নৈতিকতা ও মূল্যবোধের ওপর ভিত্তি করে সমাজ পরিচালনা।", "ব্যক্তি স্বাধীনতাকে সর্বোচ্চ গুরুত্ব দেওয়া।", "ঐতিহ্য ও সংস্কৃতিকে রক্ষা করাই সমাজের মূল লক্ষ্য।" ],
                 scores: { "BNP": [10, -10, 5, 2], "জামায়াতে ইসলামী": [-10, 10, -5, 5] }
             },
             {
@@ -305,7 +305,7 @@
             if (Math.abs(partyAPercentage - partyBPercentage) < 10) {
                  resultMessageText = "আপনার চিন্তাভাবনা বেশ ভারসাম্যপূর্ণ! আপনি উভয় দলের মতবাদেই কিছু ভালো দিক খুঁজে পেয়েছেন।";
             } else {
-                resultMessageText = `আপনার মতবাদ ${highestParty}-এর সাথে ${highestScore}% সামঞ্জস্যপূর্ণ।  রাজনীতিটা আপনি ভালোই বোঝেন!`;
+                resultMessageText = `আপনার মতবাদ ${highestParty}-এর সাথে ${highestScore}% সামঞ্জস্যপূর্ণ। আমার তো মনে হচ্ছে, রাজনীতিটা আপনি ভালোই বোঝেন!`;
             }
             document.getElementById('result-message').textContent = resultMessageText;
         }
@@ -317,27 +317,50 @@
         }
         
         function downloadScorecard() {
+            const resultSectionToClone = document.getElementById('result-section');
+            const footerToClone = document.querySelector('footer');
             const resultButtons = document.getElementById('result-buttons');
-            const header = document.querySelector('header');
-            
-            // Hide elements before taking the screenshot
-            if (header) header.style.display = 'none';
+
+            // Hide buttons on the original element before cloning it
             resultButtons.style.display = 'none';
 
-            html2canvas(document.body, {
+            // Create a temporary container for the screenshot
+            const captureContainer = document.createElement('div');
+            
+            // Style the container to be off-screen and have a defined width for layout consistency
+            Object.assign(captureContainer.style, {
+                position: 'absolute',
+                left: '-9999px',
+                width: '1000px', // A reasonable width for desktop layout
                 backgroundColor: '#f7f3ff',
-                scale: 2
+                padding: '3rem 1rem'
+            });
+
+            // Clone the required sections
+            const clonedResult = resultSectionToClone.cloneNode(true);
+            const clonedFooter = footerToClone.cloneNode(true);
+            
+            // Append cloned elements to the temporary container
+            captureContainer.appendChild(clonedResult);
+            captureContainer.appendChild(clonedFooter);
+
+            // Add the temporary container to the DOM so it can be rendered
+            document.body.appendChild(captureContainer);
+
+            html2canvas(captureContainer, {
+                scale: 2,
+                backgroundColor: null, // Use the element's background
             }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = 'political-score-page.png';
+                link.download = 'political-score.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
             }).catch(err => {
                 console.error('Oops, something went wrong!', err);
             }).finally(() => {
-                // Show elements again after download or on error
-                if (header) header.style.display = 'block';
+                // Cleanup: show the original buttons and remove the temporary container
                 resultButtons.style.display = 'flex';
+                document.body.removeChild(captureContainer);
             });
         }
     </script>
