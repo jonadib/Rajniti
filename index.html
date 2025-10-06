@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আপনার রাজনৈতিক মতবাদ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f7f3ff;
+            color: #4a4a4a;
+        }
+        .ai-theme-gradient {
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+        }
+        .ai-theme-gradient-text {
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn {
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .card {
+            background-color: white;
+            border-radius: 1.5rem; /* 24px */
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+             transform: translateY(-4px);
+        }
+        #quiz-section, #result-section, #about-section {
+            display: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="py-6 px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold ai-theme-gradient-text flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-purple-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 7a1 1 0 100 2h6a1 1 0 100-2H7zM7 11a1 1 0 100 2h2a1 1 0 100-2H7z" clip-rule="evenodd" /></svg>
+                কি ভাই, কোন দল?
+            </h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Home Page Section -->
+        <section id="hero-section" class="text-center">
+            <div class="mb-6">
+                <!-- Lovable AI Mascot -->
+                <svg class="mx-auto h-24 w-24 text-purple-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" fill="#ede9fe"/>
+                    <path d="M12 17C14.7614 17 17 14.7614 17 12H7C7 14.7614 9.23858 17 12 17Z" fill="#c4b5fd"/>
+                    <circle cx="9.5" cy="10.5" r="1.5" fill="#6d28d9"/>
+                    <circle cx="14.5" cy="10.5" r="1.5" fill="#6d28d9"/>
+                    <path d="M12 2C11.4477 2 11 2.44772 11 3V4C11 4.55228 11.4477 5 12 5C12.5523 5 13 4.55228 13 4V3C13 2.44772 12.5523 2 12 2Z" fill="#a78bfa"/>
+                    <path d="M12 5C12.2436 5 12.4842 5.02136 12.7193 5.06221C14.7598 5.46175 16.5382 6.53825 17.9378 7.9378C19.3373 9.33735 20.4138 11.1158 20.8133 13.1563C20.957 13.8409 20.993 14.5458 20.9995 15.2537" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">আপনার চিন্তার রাজনীতি: কতটা মিলছে মূল ধারার সঙ্গে?</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">“রাজনীতি শুধু নেতার কাজ না, ভাবনাটাও রাজনীতি।”</p>
+            <button id="start-quiz-btn" class="btn ai-theme-gradient text-white font-bold py-3 px-8 rounded-full shadow-lg text-lg">
+                পরীক্ষা শুরু করুন
+            </button>
+        </section>
+
+        <!-- Political Parties Section -->
+        <section id="parties-section" class="mt-20">
+            <h3 class="text-3xl font-bold text-center text-gray-800 mb-10">দলগুলোর সাথে পরিচিত হন</h3>
+            <div class="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+                <!-- Party A -->
+                <div class="card p-8 text-center">
+                    <h4 class="text-2xl font-bold text-blue-600 mb-3">বাংলাদেশ জাতীয়তাবাদী দল (BNP)</h4>
+                    <p class="text-gray-600">বাংলাদেশ জাতীয়তাবাদী দল (BNP) ১৯৭৮ সালে প্রেসিডেন্ট জিয়াউর রহমান প্রতিষ্ঠা করেন। তাদের মূল আদর্শ হলো বাংলাদেশি জাতীয়তাবাদ, যেখানে দেশের স্বতন্ত্র সংস্কৃতি, ধর্মীয় মূল্যবোধ ও স্বাধীনতা রক্ষাকে গুরুত্ব দেওয়া হয়। তারা ইসলামী নীতি, গণতন্ত্র, বহুদলীয় রাজনীতি ও মুক্তবাজার অর্থনীতি সমর্থন করে। রাজনৈতিকভাবে দলটি ডানপন্থী (centre-right) এবং দেশের স্বাধীনতা, সার্বভৌমত্ব ও জাতীয় ঐক্য রক্ষাকে সর্বাগ্রে রাখে।</p>
+                </div>
+                <!-- Party B -->
+                <div class="card p-8 text-center">
+                    <h4 class="text-2xl font-bold text-green-600 mb-3">বাংলাদেশ জামায়াতে ইসলামী</h4>
+                    <p class="text-gray-600">প্রতিষ্ঠার বছর: ১৯৪১ (পাকিস্তান আমলে), বাংলাদেশে পুনর্গঠন ১৯৭৯ সালে। জামায়াতে ইসলামী একটি ইসলামভিত্তিক রাজনৈতিক দল, যার মূল আদর্শ হলো ইসলামী রাষ্ট্রব্যবস্থা প্রতিষ্ঠা করা। তারা বিশ্বাস করে—কুরআন ও সুন্নাহ অনুযায়ী সমাজ, রাজনীতি ও অর্থনীতি পরিচালনা করা উচিত। তাদের লক্ষ্য হলো এমন একটি সমাজ গঠন করা যেখানে নৈতিকতা, ন্যায়বিচার ও ধর্মীয় মূল্যবোধ প্রাধান্য পায়। অর্থনৈতিকভাবে তারা সুদমুক্ত অর্থনীতি, সামাজিক ন্যায়বিচার ও ইসলামী কল্যাণনীতি সমর্থন করে। রাজনৈতিকভাবে দলটি ডানপন্থী (Right-wing) এবং তাদের মূলমন্ত্র: “ইসলামী মূল্যবোধের ভিত্তিতে ন্যায় ও সমৃদ্ধ বাংলাদেশ গঠন।”</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Quiz Section -->
+        <section id="quiz-section" class="max-w-2xl mx-auto mt-16">
+            <div class="card p-8">
+                <div id="progress-container" class="mb-6">
+                    <p class="text-sm text-gray-500 text-center mb-2" id="question-counter"></p>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="progress-bar" class="bg-purple-500 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+                <h3 id="question-text" class="text-2xl font-semibold text-gray-800 text-center mb-8"></h3>
+                <div id="options-container" class="grid grid-cols-1 gap-4">
+                    <!-- Options will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Result Section -->
+        <section id="result-section" class="max-w-2xl mx-auto mt-16 text-center">
+            <div id="result-card" class="card p-8 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-2 ai-theme-gradient"></div>
+                <div class="mb-4">
+                     <!-- Lovable AI Mascot -->
+                    <svg class="mx-auto h-20 w-20 text-purple-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" fill="#ede9fe"/>
+                        <path d="M8.5 13.5C9.4282 14.4282 10.6658 15 12 15C13.3342 15 14.5718 14.4282 15.5 13.5" stroke="#6d28d9" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="9.5" cy="10.5" r="1.5" fill="#6d28d9"/>
+                        <circle cx="14.5" cy="10.5" r="1.5" fill="#6d28d9"/>
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">কুইজ সম্পন্ন!</h3>
+                <p id="result-message" class="text-lg text-gray-600 mb-8"></p>
+                
+                <div class="space-y-6 mb-10">
+                    <div id="party-a-result" class="text-left">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-bold text-blue-600">BNP-এর সাথে সাদৃশ্য</span>
+                            <span id="party-a-score" class="font-bold text-blue-600">0%</span>
+                        </div>
+                        <div class="w-full bg-blue-100 rounded-full h-4">
+                            <div id="party-a-bar" class="bg-blue-500 h-4 rounded-full transition-all duration-1000 ease-out" style="width: 0%"></div>
+                        </div>
+                    </div>
+                     <div id="party-b-result" class="text-left">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-bold text-green-600">জামায়াতে ইসলামী-এর সাথে সাদৃশ্য</span>
+                            <span id="party-b-score" class="font-bold text-green-600">0%</span>
+                        </div>
+                        <div class="w-full bg-green-100 rounded-full h-4">
+                            <div id="party-b-bar" class="bg-green-500 h-4 rounded-full transition-all duration-1000 ease-out" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="result-buttons" class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button id="download-btn" class="btn ai-theme-gradient text-white font-bold py-3 px-6 rounded-full w-full sm:w-auto flex items-center justify-center">স্কোরবোর্ডটি ডাউনলোড করুন</button>
+                    <button id="restart-btn" class="btn bg-gray-200 text-gray-700 font-bold py-3 px-6 rounded-full w-full sm:w-auto flex items-center justify-center">আবার পরীক্ষা দিন</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section id="about-section" class="max-w-4xl mx-auto mt-20 text-center">
+             <div class="card p-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">আমাদের সম্পর্কে</h3>
+                <p class="text-gray-600">রাজনীতির আলোচনা মানেই কি শুধু তর্ক আর বিভেদ? আমরা তেমনটা মনে করি না। এই ওয়েবসাইটটি বানানোর পেছনের ভাবনাটা খুব সহজ—আমরা চেয়েছিলাম এমন একটা জায়গা তৈরি করতে, যেখানে যে কেউ মজা করে নিজের রাজনৈতিক চিন্তাভাবনা সম্পর্কে জানতে পারবে। এখানে কোনো পক্ষ নেওয়া বা বিচার করার ব্যাপার নেই; পুরোটাই একটা মজার খেলা। আমাদের উদ্দেশ্য হলো, জটিল বিষয়গুলো নিয়ে সহজভাবে ভাবতে উৎসাহিত করা। আশা করি, আপনার ভালো লাগবে! এই ওয়েবসাইটটি কোনো রাজনৈতিক দলের সাথে যুক্ত নয়। এখানে দেওয়া ফলাফল শুধুমাত্র বিনোদনের জন্য।</p>
+             </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="text-center py-8 mt-12 border-t border-gray-200">
+        <p class="text-gray-500">&copy; All rights reserved by Adib Studio</p>
+    </footer>
+
+    <script>
+        const quizData = [
+            {
+                question: "আপনার মতে, জাতীয়তাবাদের ভিত্তি কী হওয়া উচিত?",
+                options: [ "বাংলাদেশের ভৌগোলিক সীমানার ওপর ভিত্তি করে জাতীয়তাবাদ।", "ইসলামী রাষ্ট্র ও উম্মাহর ধারণার ওপর ভিত্তি করে জাতীয়তা।", "ভাষা ও সংস্কৃতির ওপর ভিত্তি করে জাতীয়তাবাদ।", "অর্থনৈতিক সমৃদ্ধিই জাতীয়তাবাদের মূল ভিত্তি।" ],
+                scores: { "BNP": [10, -10, 5, 2], "জামায়াতে ইসলামী": [-10, 10, 2, 0] }
+            },
+            {
+                question: "রাষ্ট্রের পরিচালনায় ধর্মের ভূমিকা কী হওয়া উচিত?",
+                options: [ "গণতন্ত্রই হবে মূল ভিত্তি, তবে ইসলামী মূল্যবোধকে সম্মান করা হবে।", "ইসলামী শাসন ও সমাজব্যবস্থা প্রতিষ্ঠাই রাষ্ট্রের মূল লক্ষ্য হওয়া উচিত।", "রাষ্ট্রকে ধর্মীয় বিষয় থেকে সম্পূর্ণ আলাদা রাখা উচিত (ধর্মনিরপেক্ষতা)।", "ধর্ম ব্যক্তিগত বিষয়, রাষ্ট্র এতে হস্তক্ষেপ করবে না।" ],
+                scores: { "BNP": [10, -5, -10, 5], "জামায়াতে ইসলামী": [-5, 10, -10, 0] }
+            },
+            {
+                question: "আপনি কোন ধরনের গণতান্ত্রিক ব্যবস্থা সমর্থন করেন?",
+                options: [ "সকল দলের অংশগ্রহণে বহুদলীয় গণতন্ত্র।", "ইসলামী রাষ্ট্রের কাঠামোর মধ্যে সীমিত গণতন্ত্র।", "একদলীয় শাসনব্যবস্থা যেখানে উন্নয়নই প্রধান লক্ষ্য।", "সরাসরি জনগণের অংশগ্রহণে প্রত্যক্ষ গণতন্ত্র।" ],
+                scores: { "BNP": [10, -10, -5, 2], "জামায়াতে ইসলামী": [-10, 10, 0, 0] }
+            },
+            {
+                question: "দেশের অর্থনৈতিক উন্নয়নে কোন নীতি সবচেয়ে কার্যকর?",
+                options: [ "বেসরকারি খাতের উন্নয়নের মাধ্যমে বাজারভিত্তিক অর্থনীতি।", "সুদমুক্ত ব্যাংকিং এবং সামাজিক ন্যায়ের ভিত্তিতে ন্যায্য বিতরণ।", "রাষ্ট্রীয় নিয়ন্ত্রণে সমাজতান্ত্রিক অর্থনীতি।", "বৈদেশিক বিনিয়োগ আকর্ষণ করাই অর্থনীতির মূল চালিকাশক্তি।" ],
+                scores: { "BNP": [10, -8, -10, 8], "জামায়াতে ইসলামী": [-8, 10, -10, 0] }
+            },
+            {
+                question: "দেশের শিক্ষাব্যবস্থায় কোনটির ওপর বেশি গুরুত্ব দেওয়া উচিত?",
+                options: [ "আধুনিক শিক্ষার পাশাপাশি ধর্মীয় শিক্ষার প্রতি সম্মান প্রদর্শন।", "ইসলামী শিক্ষার প্রসার এবং তাকে মূলধারায় নিয়ে আসা।", "বিজ্ঞান ও প্রযুক্তিভিত্তিক সম্পূর্ণ আধুনিক শিক্ষা।", "কর্মমুখী ও কারিগরি শিক্ষার ওপর সর্বাধিক গুরুত্ব।" ],
+                scores: { "BNP": [10, 2, -5, 5], "জামায়াতে ইসলামী": [2, 10, -10, -5] }
+            },
+            {
+                question: "সমাজে নারীর ভূমিকা ও অধিকার কেমন হওয়া উচিত?",
+                options: [ "সামাজিক ও রাজনৈতিক ক্ষেত্রে নারীর সক্রিয় অংশগ্রহণকে স্বাগত জানানো।", "ধর্মীয় অনুশাসন মেনে নারীর ভূমিকা নির্ধারণ করা।", "নারী-পুরুষের সমানাধিকার প্রতিষ্ঠা করা, কোনো সীমাবদ্ধতা ছাড়া।", "নারীর প্রধান ভূমিকা হবে পরিবার ও সন্তান প্রতিপালনে।" ],
+                scores: { "BNP": [10, -10, 5, -2], "জামায়াতে ইসলামী": [-10, 10, -10, 5] }
+            },
+            {
+                question: "বৈদেশিক সম্পর্কের ক্ষেত্রে কোনটিকে অগ্রাধিকার দেওয়া উচিত?",
+                options: [ "সব দেশের সাথে জাতীয় স্বার্থ বজায় রেখে বন্ধুত্বপূর্ণ সম্পর্ক স্থাপন।", "মুসলিম দেশগুলোর সাথে বিশেষ সম্পর্ক স্থাপন এবং ইসলামিক মূল্যবোধকে গুরুত্ব দেওয়া।", "শক্তিশালী পশ্চিমা দেশগুলোর সাথে কৌশলগত মৈত্রী স্থাপন।", "কোনো জোটে না গিয়ে নিরপেক্ষ থাকা।" ],
+                scores: { "BNP": [10, 2, 5, 0], "জামায়াতে ইসলামী": [-5, 10, -10, 2] }
+            },
+            {
+                question: "সমাজ পরিচালনার মূল ভিত্তি কী হওয়া উচিত?",
+                options: [ "একটি ধর্মনিরপেক্ষ ও সহনশীল সমাজ ব্যবস্থা।", "ইসলামী নৈতিকতা ও মূল্যবোধের ওপর ভিত্তি করে সমাজ পরিচালনা।", "ব্যক্তি சுதந்திரকে সর্বোচ্চ গুরুত্ব দেওয়া।", "ঐতিহ্য ও সংস্কৃতিকে রক্ষা করাই সমাজের মূল লক্ষ্য।" ],
+                scores: { "BNP": [10, -10, 5, 2], "জামায়াতে ইসলামী": [-10, 10, -5, 5] }
+            },
+            {
+                question: "দেশের আইন ও বিচার ব্যবস্থা কেমন হওয়া উচিত?",
+                options: [ "আধুনিক আইনকানুন, যা ধর্মীয় অনুভূতির সাথে সমন্বয় করে চলবে।", "ইসলামী শরীয়াহভিত্তিক আইন ও বিচার ব্যবস্থা প্রতিষ্ঠা করা।", "ব্রিটিশ সাধারণ আইনের ওপর ভিত্তি করে বিচার ব্যবস্থা।", "সম্পূর্ণ নতুন এবং দেশের উপযোগী নিজস্ব আইন ব্যবস্থা তৈরি করা।" ],
+                scores: { "BNP": [10, -10, 5, 2], "জামায়াতে ইসলামী": [-10, 10, -5, 0] }
+            },
+            {
+                question: "দেশের স্বাধীনতা ও সার্বভৌমত্ব রক্ষায় আপনার ভাবনা কী?",
+                options: [ "দেশের সার্বভৌমত্ব রক্ষা করা সর্বাগ্রে এবং কোনো আপস নয়।", "দেশের সার্বভৌমত্ব রক্ষার পাশাপাশি ইসলামী শাসন প্রতিষ্ঠাকে সমর্থন করা।", "আন্তর্জাতিক সংস্থার মাধ্যমে দেশের নিরাপত্তা নিশ্চিত করা।", "শক্তিশালী সামরিক বাহিনী গঠনই সার্বভৌমত্ব রক্ষার একমাত্র উপায়।" ],
+                scores: { "BNP": [10, -5, -8, 5], "জামায়াতে ইসলামী": [-5, 10, -10, 2] }
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let scores = { "BNP": 0, "জামায়াতে ইসলামী": 0 };
+        const maxScorePerParty = quizData.length * 10;
+
+        const startQuizBtn = document.getElementById('start-quiz-btn');
+        const heroSection = document.getElementById('hero-section');
+        const partiesSection = document.getElementById('parties-section');
+        const quizSection = document.getElementById('quiz-section');
+        const resultSection = document.getElementById('result-section');
+        const aboutSection = document.getElementById('about-section');
+        
+        const questionCounter = document.getElementById('question-counter');
+        const progressBar = document.getElementById('progress-bar');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+
+        const downloadBtn = document.getElementById('download-btn');
+        const restartBtn = document.getElementById('restart-btn');
+
+        startQuizBtn.addEventListener('click', startQuiz);
+        restartBtn.addEventListener('click', restartQuiz);
+        downloadBtn.addEventListener('click', downloadScorecard);
+
+        function startQuiz() {
+            heroSection.style.display = 'none';
+            partiesSection.style.display = 'none';
+            aboutSection.style.display = 'none';
+            quizSection.style.display = 'block';
+            resultSection.style.display = 'none';
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            if (currentQuestionIndex < quizData.length) {
+                const questionData = quizData[currentQuestionIndex];
+                questionCounter.textContent = `প্রশ্ন ${currentQuestionIndex + 1} / ${quizData.length}`;
+                progressBar.style.width = `${((currentQuestionIndex + 1) / quizData.length) * 100}%`;
+                questionText.textContent = questionData.question;
+                optionsContainer.innerHTML = '';
+                
+                questionData.options.forEach((option, index) => {
+                    const button = document.createElement('button');
+                    button.textContent = option;
+                    button.className = 'btn text-center w-full p-4 border border-gray-200 rounded-lg hover:bg-purple-100 hover:border-purple-400';
+                    button.addEventListener('click', () => selectAnswer(index));
+                    optionsContainer.appendChild(button);
+                });
+            } else {
+                showResult();
+            }
+        }
+
+        function selectAnswer(optionIndex) {
+            const questionScores = quizData[currentQuestionIndex].scores;
+            scores["BNP"] += questionScores["BNP"][optionIndex];
+            scores["জামায়াতে ইসলামী"] += questionScores["জামায়াতে ইসলামী"][optionIndex];
+
+            currentQuestionIndex++;
+            renderQuestion();
+        }
+
+        function showResult() {
+            quizSection.style.display = 'none';
+            resultSection.style.display = 'block';
+            aboutSection.style.display = 'block';
+
+            const partyAPercentage = Math.max(0, Math.round(((scores["BNP"] + maxScorePerParty) / (maxScorePerParty * 2)) * 100));
+            const partyBPercentage = Math.max(0, Math.round(((scores["জামায়াতে ইসলামী"] + maxScorePerParty) / (maxScorePerParty * 2)) * 100));
+
+            document.getElementById('party-a-score').textContent = `${partyAPercentage}%`;
+            document.getElementById('party-b-score').textContent = `${partyBPercentage}%`;
+
+            setTimeout(() => {
+                document.getElementById('party-a-bar').style.width = `${partyAPercentage}%`;
+                document.getElementById('party-b-bar').style.width = `${partyBPercentage}%`;
+            }, 100);
+
+            let resultMessageText = "";
+            let highestParty = partyAPercentage > partyBPercentage ? "BNP" : "জামায়াতে ইসলামী";
+            let highestScore = Math.max(partyAPercentage, partyBPercentage);
+
+            if (Math.abs(partyAPercentage - partyBPercentage) < 10) {
+                 resultMessageText = "আপনার চিন্তাভাবনা বেশ ভারসাম্যপূর্ণ! আপনি উভয় দলের মতবাদেই কিছু ভালো দিক খুঁজে পেয়েছেন।";
+            } else {
+                resultMessageText = `আপনার মতবাদ ${highestParty}-এর সাথে ${highestScore}% সামঞ্জস্যপূর্ণ।  রাজনীতিটা আপনি ভালোই বোঝেন!`;
+            }
+            document.getElementById('result-message').textContent = resultMessageText;
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            scores = { "BNP": 0, "জামায়াতে ইসলামী": 0 };
+            startQuiz();
+        }
+        
+        function downloadScorecard() {
+            const resultButtons = document.getElementById('result-buttons');
+            const header = document.querySelector('header');
+            
+            // Hide elements before taking the screenshot
+            if (header) header.style.display = 'none';
+            resultButtons.style.display = 'none';
+
+            html2canvas(document.body, {
+                backgroundColor: '#f7f3ff',
+                scale: 2
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'political-score-page.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }).catch(err => {
+                console.error('Oops, something went wrong!', err);
+            }).finally(() => {
+                // Show elements again after download or on error
+                if (header) header.style.display = 'block';
+                resultButtons.style.display = 'flex';
+            });
+        }
+    </script>
+</body>
+</html>
+
